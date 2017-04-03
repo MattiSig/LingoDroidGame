@@ -32,6 +32,7 @@ public class EnemyManager : MonoBehaviour
         if (other.name == "rundog1")
         {
             buttons.alpha = 1;
+            Time.timeScale = 0.5F;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -39,6 +40,7 @@ public class EnemyManager : MonoBehaviour
         if (other.name == "rundog1")
         {
             buttons.alpha = 0;
+            Time.timeScale = 1F;
         }
     }
 }

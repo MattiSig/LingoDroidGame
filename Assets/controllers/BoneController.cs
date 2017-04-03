@@ -9,7 +9,6 @@ public class BoneController : MonoBehaviour {
     public float minSpeed = 3;
     public float maxSpeed = 13;
     float randomSpeed;
-    private GameObject CanvasObject;
     private TextMesh[] textObject;
     private string[] stringArray = { "Matti", "Finnur", "Arnór", "Doddi", "ekkiOrð", "lærðuKrakki", "kuldinn", "myrkrið" };
 
@@ -18,8 +17,6 @@ public class BoneController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         randomSpeed = Random.Range(minSpeed, maxSpeed);
-        CanvasObject = GameObject.Find("Canvas");
-        //      Debug.Log(CanvasObject);
         textObject = GetComponentsInChildren<TextMesh>();
         int rndm = Random.Range(1, 8);
         textObject[0].text = stringArray[rndm];
@@ -43,19 +40,6 @@ public class BoneController : MonoBehaviour {
             MovingDirection = Vector3.up * 4/randomSpeed;
         }
 
-  
-
-    //   SpawnRandom.Spawn();
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        CanvasObject.SetActive(true);
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        CanvasObject.SetActive(false);
     }
 
 }
