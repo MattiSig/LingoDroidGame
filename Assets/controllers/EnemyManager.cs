@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
     public float speed = 5;
     // Use this for initialization
-    private GameObject CanvasObject;
     private TextMesh[] textObject;
     private string[] stringArray = { "Matti", "Finnur", "Arnór", "Doddi", "ekkiOrð", "lærðuKrakki", "kuldinn", "myrkrið" };
+    private GameObject buttPanel;
+    private CanvasGroup buttons;
     void Start()
     {
-        CanvasObject = GameObject.Find("Canvas");   
-//      Debug.Log(CanvasObject);
+
+        buttPanel = GameObject.Find("Canvas/ButtPanel");
+        buttons = buttPanel.GetComponent<CanvasGroup>();
         textObject = GetComponentsInChildren<TextMesh>();
         int rndm = Random.Range(1, 8);
         textObject[0].text = stringArray[rndm];
@@ -26,10 +29,16 @@ public class EnemyManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        CanvasObject.SetActive(true);
+        if (other.name == "rundog1")
+        {
+            buttons.alpha = 1;
+        }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        CanvasObject.SetActive(false);
+        if (other.name == "rundog1")
+        {
+            buttons.alpha = 0;
+        }
     }
 }

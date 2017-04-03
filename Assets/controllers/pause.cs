@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class pause : MonoBehaviour {
     public bool isPaused = false;
+    public void Start()
+    {
+        Time.timeScale = 1;
+    }
     public void OnClick()
     {
         isPaused = !isPaused;
@@ -16,4 +20,5 @@ public class pause : MonoBehaviour {
             Time.timeScale = 1;
         }
     }
+
 }
