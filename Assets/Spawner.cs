@@ -5,7 +5,8 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
     private float nextSpawn = 0;
-    public Transform prefabToSpawn;
+    public Transform EnemyPrefab;
+    public Transform BonePrefab;
     public float spawnRate = 1;
     public float randomDelay = 1;
      
@@ -13,13 +14,24 @@ public class Spawner : MonoBehaviour {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    private int counter = 1;
+    // Update is called once per frame
+
+    void Update () {
 		if( Time.time > nextSpawn)
         {
-            Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+            if (counter%5 == 0)
+            {
+                var newEnemy = Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
+                newEnemy.transform.parent = gameObject.transform;
+            }
+            else
+            {
+                var newBone = Instantiate(BonePrefab, transform.position, Quaternion.identity);
+                newBone.transform.parent = gameObject.transform;
+            }
             nextSpawn = Time.time + spawnRate + Random.Range(0, randomDelay);
+            counter++;
         }
 	}
 }
