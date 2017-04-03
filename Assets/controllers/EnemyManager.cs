@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public float speed = 7;
+    public float speed = 5;
     // Use this for initialization
     private GameObject CanvasObject;
     private TextMesh[] textObject;
     private string[] stringArray = { "Matti", "Finnur", "Arnór", "Doddi", "ekkiOrð", "lærðuKrakki", "kuldinn", "myrkrið" };
     void Start()
     {
-        CanvasObject = GameObject.Find("Canvas");
-        Debug.Log(CanvasObject);
+        CanvasObject = GameObject.Find("Canvas");   
+//      Debug.Log(CanvasObject);
         textObject = GetComponentsInChildren<TextMesh>();
         int rndm = Random.Range(1, 8);
         textObject[0].text = stringArray[rndm];

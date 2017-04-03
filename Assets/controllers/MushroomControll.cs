@@ -8,14 +8,17 @@ public class MushroomControll : MonoBehaviour {
     private Canvas CanvasObject;
     void Start () {
         CanvasObject = GameObject.Find("Canvas").GetComponent<Canvas>();
-        Debug.Log(CanvasObject);
+        Debug.Log(speed);
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position += Vector3.left * speed * Time.deltaTime;
-	}
+        transform.position += Vector3.left * 4/speed * Time.deltaTime;
+        Debug.Log(speed);
+        Debug.Log(transform.position);
+
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

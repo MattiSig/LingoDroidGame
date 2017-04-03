@@ -35,6 +35,12 @@ public class DogController : MonoBehaviour {
         {
             Application.LoadLevel(Application.loadedLevel);
         }
+
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Bone"))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
     }
 
 }
