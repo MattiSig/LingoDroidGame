@@ -8,10 +8,11 @@ public class BoneController : MonoBehaviour {
     private Vector3 MovingDirection = Vector3.up * 1;
     public float minSpeed = 3;
     public float maxSpeed = 13;
-    float randomSpeed;
+    private float randomSpeed;
     private TextMesh[] textObject;
-    private string[] stringArray = { "Matti", "Finnur", "Arnór", "Doddi", "ekkiOrð", "lærðuKrakki", "kuldinn", "myrkrið" };
-
+    private string islWord;
+    private string engWord;
+    private double timer = 0;
 
 
     // Use this for initialization
@@ -19,8 +20,7 @@ public class BoneController : MonoBehaviour {
         randomSpeed = Random.Range(minSpeed, maxSpeed);
         textObject = GetComponentsInChildren<TextMesh>();
         int rndm = Random.Range(1, 8);
-        textObject[0].text = stringArray[rndm];
-
+        textObject[0].text = engWord;
     }
 
     // Update is called once per frame
@@ -28,8 +28,6 @@ public class BoneController : MonoBehaviour {
 
 	    transform.position += Vector3.left * randomSpeed * Time.deltaTime;
         gameObject.transform.Translate(MovingDirection * randomSpeed * Time.smoothDeltaTime);
-
-   
 
         if (gameObject.transform.position.y > 3)
         {
@@ -39,7 +37,25 @@ public class BoneController : MonoBehaviour {
         {
             MovingDirection = Vector3.up * 4/randomSpeed;
         }
+        if(Time.time -1.5 > timer && timer != 0)
+        {
+            Destroy(this.gameObject); 
+        }
 
+    }
+    public void setIslWord(string a)
+    {
+        islWord = a;
+    }
+    public void setEngWord(string a)
+    {
+        engWord = a;
+    }
+    public void dogAteMe()
+    {
+        textObject[0].text = engWord + " = " + islWord;
+        randomSpeed = 1F;
+        timer = Time.time;
     }
 
 }
