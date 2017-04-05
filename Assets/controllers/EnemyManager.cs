@@ -8,9 +8,11 @@ public class EnemyManager : MonoBehaviour
     public float speed = 5;
     // Use this for initialization
     private TextMesh[] textObject;
-    private string[] stringArray = { "Matti", "Finnur", "Arnór", "Doddi", "ekkiOrð", "lærðuKrakki", "kuldinn", "myrkrið" };
+    //private string[] stringArray = { "Matti", "Finnur", "Arnór", "Doddi", "ekkiOrð", "lærðuKrakki", "kuldinn", "myrkrið" };
+
     private GameObject buttPanel;
     private CanvasGroup buttons;
+    private string word;
     void Start()
     {
 
@@ -18,7 +20,7 @@ public class EnemyManager : MonoBehaviour
         buttons = buttPanel.GetComponent<CanvasGroup>();
         textObject = GetComponentsInChildren<TextMesh>();
         int rndm = Random.Range(1, 8);
-        textObject[0].text = stringArray[rndm];
+        textObject[0].text = word;
     }
 
     // Update is called once per frame
@@ -42,5 +44,9 @@ public class EnemyManager : MonoBehaviour
             buttons.alpha = 0;
             Time.timeScale = 1F;
         }
+    }
+    public void setWord(string a)
+    {
+        word = a;
     }
 }

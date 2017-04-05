@@ -7,11 +7,15 @@ public class Spawner : MonoBehaviour {
     private float nextSpawn = 0;
     public Transform EnemyPrefab;
     public Transform BonePrefab;
+    public Transform FencePrefab;
     public float spawnRate = 1;
     public float randomDelay = 1;
-     
-	// Use this for initialization
-	void Start () {
+    //private string[, ,] stringArray = new string[, ,];
+    //stringArray = { { { "maður", "man" }, { "kona", "woman" }, { "barn", "child" }, { "amma", "grandma" } } }; 
+
+
+    // Use this for initialization
+    void Start () {
 		
 	}
     private int counter = 1;
@@ -23,12 +27,16 @@ public class Spawner : MonoBehaviour {
             if (counter%5 == 0)
             {
                 var newEnemy = Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
-                newEnemy.transform.parent = gameObject.transform;
+                var newEnemyScript = newEnemy.GetComponent<EnemyManager>();
+                newEnemyScript.setWord("apaheili");
+                //newEnemy.transform.parent = gameObject.transform;
             }
             else
             {
                 var newBone = Instantiate(BonePrefab, transform.position, Quaternion.identity);
-                newBone.transform.parent = gameObject.transform;
+                var newBoneScript = newBone.GetComponent<BoneController>();
+                newBoneScript.setWord("apaheili");
+                //newBone.transform.parent = gameObject.transform;
             }
             nextSpawn = Time.time + spawnRate + Random.Range(0, randomDelay);
             counter++;
