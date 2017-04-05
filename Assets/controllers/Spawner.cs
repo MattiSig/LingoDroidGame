@@ -10,8 +10,7 @@ public class Spawner : MonoBehaviour {
     public Transform FencePrefab;
     public float spawnRate = 1;
     public float randomDelay = 1;
-    //private string[, ,] stringArray = new string[, ,];
-    //stringArray = { { { "maður", "man" }, { "kona", "woman" }, { "barn", "child" }, { "amma", "grandma" } } }; 
+    private string[,] fourWords = new string[,]{{"ég", "me"}, {"þú","you"}, {"þau", "them"}, {"okkur", "us"}};
 
 
     // Use this for initialization
@@ -24,6 +23,7 @@ public class Spawner : MonoBehaviour {
     void Update () {
 		if( Time.time > nextSpawn)
         {
+            
             if (counter%5 == 0)
             {
                 var newEnemy = Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
