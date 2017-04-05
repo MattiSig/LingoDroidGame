@@ -33,7 +33,10 @@ public class EnemyManager : MonoBehaviour
         if (other.name == "rundog1")
         {
             buttonAlpha.alpha = 1;
+            buttonAlpha.interactable = true;
             Time.timeScale = 0.5F;
+            var dogScript = other.transform.GetComponent<DogController>();
+            dogScript.setCanJump(false);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -41,7 +44,10 @@ public class EnemyManager : MonoBehaviour
         if (other.name == "rundog1")
         {
             buttonAlpha.alpha = 0;
+            buttonAlpha.interactable = false;
             Time.timeScale = 1F;
+            var dogScript = other.transform.GetComponent<DogController>();
+            dogScript.setCanJump(true);
         }
     }
     public void setWord(string a)
@@ -53,7 +59,7 @@ public class EnemyManager : MonoBehaviour
         buttonGroup = GameObject.Find("EnemySpawn/Canvas/ButtPanel");
         buttonTexts = buttonGroup.GetComponentsInChildren<Text>(); 
         Debug.Log(buttonTexts);
-        for(int j = 0; j < buttonTexts.Length; j++)
+        for (int j = 0; j < buttonTexts.Length; j++)
         {
             buttonTexts[j].text = words[j, 0];
             if (words[j, 2] == "t")
@@ -61,7 +67,7 @@ public class EnemyManager : MonoBehaviour
                 word = words[j, 1];
                 var buttonScript = buttonGroup.transform.GetChild(j).GetComponent<ButtonClick>();
                 buttonScript.setRightOne();
-                buttonScript.shroom = transform; 
+                buttonScript.shroom = transform.GetChild(0);
             }
         }
     }
