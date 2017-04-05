@@ -14,17 +14,17 @@ public class ButtonClick : MonoBehaviour {
 	void Update () {
 		
 	}
-    public setRightOne()
+    public void setRightOne()
     {
         theRightOne = true;
     }
-    OnClick()
+    public void OnClick()
     {
         if (theRightOne)
         {
-            Debug.Log("RÉTT!");
+            Destroy(shroom.gameObject);
         } else {
-            Debug.Log("RANGT!");
+           Application.LoadLevel(Application.loadedLevel);
         }
     }
 }

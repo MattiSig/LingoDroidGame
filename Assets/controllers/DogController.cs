@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DogController : MonoBehaviour {
 
     private Rigidbody2D myRigidbody;
     public float dogJumpForce = 500f;
     private Animator myAnim;
+    public Text score;
+    private double startTime;
 	// Use this for initialization
 	void Start () {
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
+        startTime = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -26,7 +30,8 @@ public class DogController : MonoBehaviour {
                 myRigidbody.AddForce(transform.up * dogJumpForce);
             }
         }
-        myAnim.SetFloat("vVelocity", System.Math.Abs(myRigidbody.velocity.y));    
+        myAnim.SetFloat("vVelocity", System.Math.Abs(myRigidbody.velocity.y));
+        score.text = (Time.time - startTime).ToString("0.0");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -42,11 +47,12 @@ public class DogController : MonoBehaviour {
     {
         if (other.name == "BoneText(Clone)")
         {
-            Debug.Log("virkar");
             GameObject boneText = other.gameObject;
+            var boneScript = boneText.transform.GetComponent<BoneController>();
             if(boneText.transform.GetChild(0).name == "bone")
             {
                 Destroy(boneText.transform.GetChild(0).gameObject);
+                boneScript.dogAteMe();
             }
         }
     }

@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
     private GameObject buttonGroup;
     private CanvasGroup buttonAlpha;
     private Text[] buttonTexts;
+    private Component[] buttonScripts;
 
     void Start()
     {
@@ -50,14 +51,18 @@ public class EnemyManager : MonoBehaviour
     public void setButtonText(string[,] words)
     {
         buttonGroup = GameObject.Find("EnemySpawn/Canvas/ButtPanel");
-        buttonTexts = buttonGroup.GetComponentsInChildren<Text>();
+        buttonTexts = buttonGroup.GetComponentsInChildren<Text>(); 
         Debug.Log(buttonTexts);
         for(int j = 0; j < buttonTexts.Length; j++)
         {
             buttonTexts[j].text = words[j, 0];
-            if (words[j, 2] == "t") {
+            if (words[j, 2] == "t")
+            {
                 word = words[j, 1];
-                buttonTexts[j].GetComponent();
+                var buttonScript = buttonGroup.transform.GetChild(j).GetComponent<ButtonClick>();
+                buttonScript.setRightOne();
+                buttonScript.shroom = transform; 
+            }
         }
     }
 }
