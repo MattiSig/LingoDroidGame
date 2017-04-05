@@ -59,7 +59,7 @@ public class EnemyManager : MonoBehaviour
         buttonGroup = GameObject.Find("EnemySpawn/Canvas/ButtPanel");
         buttonTexts = buttonGroup.GetComponentsInChildren<Text>(); 
         Debug.Log(buttonTexts);
-        for(int j = 0; j < buttonTexts.Length; j++)
+        for (int j = 0; j < buttonTexts.Length; j++)
         {
             buttonTexts[j].text = words[j, 0];
             if (words[j, 2] == "t")
