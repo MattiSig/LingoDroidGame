@@ -10,7 +10,6 @@ public class BoneController : MonoBehaviour {
     public float maxSpeed = 13;
     private float randomSpeed;
     private TextMesh[] textObject;
-    //private string[] stringArray = { "Matti", "Finnur", "Arnór", "Doddi", "ekkiOrð", "lærðuKrakki", "kuldinn", "myrkrið" };
     private string islWord;
     private string engWord;
     private double timer = 0;
