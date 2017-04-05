@@ -8,13 +8,14 @@ public class Spawner : MonoBehaviour {
     public Transform EnemyPrefab;
     public Transform BonePrefab;
     public Transform FencePrefab;
-    public float spawnRate = 1;
-    public float randomDelay = 1;
+    public float spawnRate = 4;
+    public float randomDelay = 4;
     private string[,] fourWords = new string[,]{{"ég", "me", "f"}, {"þú", "you", "t"}, {"þau", "them", "f"}, {"okkur", "us", "f"}};
+    private int randomNum;
 
     // Use this for initialization
     void Start () {
-        
+        refreshWords();
 	}
     private int counter = 1;
     // Update is called once per frame
@@ -23,11 +24,13 @@ public class Spawner : MonoBehaviour {
 		if( Time.time > nextSpawn)
         {
             int countMod = counter % 5;
+
             if (counter%5 == 0)
             {
                 var newEnemy = Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
                 var newEnemyScript = newEnemy.GetComponent<EnemyManager>();
-                newEnemyScript.setButtonText(fourWords);                
+                newEnemyScript.setButtonText(fourWords);
+                Debug.Log("hraðari");       
             }
             else
             {
@@ -37,13 +40,41 @@ public class Spawner : MonoBehaviour {
                 Debug.Log(countMod);
             }
             nextSpawn = Time.time + spawnRate + Random.Range(0, randomDelay);
-            counter++;
-        }
-	}
 
-    public void refreshWords()
-    {
+            if (countMod == 1)
+            {
+                refreshWords();
+                if (counter > 1 && randomDelay > 0.3)
+                {
+                    double letItFloat = 0.3;
+                    spawnRate -= (float)letItFloat;
+                    randomDelay -= (float)letItFloat;
+                    Debug.Log(spawnRate);
+                    Debug.Log(randomDelay);
+                }
+                
+            }
+
+            counter++;
+
+        }
+
 
     }
-    
+
+   // köllum i´Db og veljum orð sem fer á vonda kall
+    public void refreshWords()
+    {
+       
+        // fourWords = kall á Arnor 
+        randomNum = Random.Range(0, 3);
+        for(int i=0; i < 4; i++)
+        {
+            fourWords[i, 2] = "f";
+        }
+        fourWords[randomNum, 2] = "t";
+    }
+
+
+
 }

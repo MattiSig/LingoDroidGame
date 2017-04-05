@@ -14,11 +14,11 @@ public class ButtonClick : MonoBehaviour {
 	void Update () {
 		
 	}
-    public setRightOne()
+    public void setRightOne()
     {
         theRightOne = true;
     }
-    OnClick()
+    public void OnClick()
     {
         if (theRightOne)
         {
