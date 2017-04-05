@@ -34,4 +34,18 @@ public class Spawner : MonoBehaviour {
             counter++;
         }
 	}
+
+
+    void makeArray () { 
+    int[] words = new int[4];
+        for (int i = 0; i < words.Length; i++){
+            int fetchWord = Random.Range(0, 100);
+            words[i] = fetchWord;
+        }
+        
+        Debug.Log();
+    }
+
+
+
 }
