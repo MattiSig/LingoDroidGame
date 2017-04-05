@@ -10,12 +10,11 @@ public class Spawner : MonoBehaviour {
     public Transform FencePrefab;
     public float spawnRate = 1;
     public float randomDelay = 1;
-    private string[,] fourWords = new string[,]{{"ég", "me"}, {"þú","you"}, {"þau", "them"}, {"okkur", "us"}};
-
+    private string[,] fourWords = new string[,]{{"ég", "me", "f"}, {"þú", "you", "t"}, {"þau", "them", "f"}, {"okkur", "us", "f"}};
 
     // Use this for initialization
     void Start () {
-		
+        
 	}
     private int counter = 1;
     // Update is called once per frame
@@ -23,23 +22,28 @@ public class Spawner : MonoBehaviour {
     void Update () {
 		if( Time.time > nextSpawn)
         {
-            
+            int countMod = counter % 5;
             if (counter%5 == 0)
             {
                 var newEnemy = Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
                 var newEnemyScript = newEnemy.GetComponent<EnemyManager>();
-                newEnemyScript.setWord("apaheili");
-                //newEnemy.transform.parent = gameObject.transform;
+                newEnemyScript.setButtonText(fourWords);                
             }
             else
             {
                 var newBone = Instantiate(BonePrefab, transform.position, Quaternion.identity);
                 var newBoneScript = newBone.GetComponent<BoneController>();
-                newBoneScript.setWord("apaheili");
-                //newBone.transform.parent = gameObject.transform;
+                newBoneScript.setWord(fourWords[countMod-1,1]);
+                Debug.Log(countMod);
             }
             nextSpawn = Time.time + spawnRate + Random.Range(0, randomDelay);
             counter++;
         }
 	}
+
+    public void refreshWords()
+    {
+
+    }
+    
 }
