@@ -33,16 +33,17 @@ public class Spawner : MonoBehaviour {
             {
                 var newBone = Instantiate(BonePrefab, transform.position, Quaternion.identity);
                 var newBoneScript = newBone.GetComponent<BoneController>();
-                newBoneScript.setWord(fourWords[countMod-1,1]);
+                newBoneScript.setIslWord(fourWords[countMod-1, 0]);
+                newBoneScript.setEngWord(fourWords[countMod-1, 1]);
                 Debug.Log(countMod);
             }
             nextSpawn = Time.time + spawnRate + Random.Range(0, randomDelay);
             counter++;
         }
+
 	}
     public void refreshWords()
     {
 
     }
-    
 }
