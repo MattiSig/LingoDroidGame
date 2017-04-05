@@ -10,30 +10,31 @@ public class DogController : MonoBehaviour {
     private Animator myAnim;
     public Text score;
     private double startTime;
+
     public AudioClip SoundToPlay;
     new AudioSource audio;
 
 
 
-    // Use this for initialization
-    void Start () {
+   
+    private bool canJump = true;
+	// Use this for initialization
+	void Start () {
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
         startTime = Time.time;
         audio = GetComponent<AudioSource>();
-
     }
-
-    // Update is called once per frame
-    void Update () {
-
-        if (Input.GetButtonUp("Jump") && System.Math.Abs(myRigidbody.velocity.y)<1)
+	
+	// Update is called once per frame
+	void Update () {
+        if (Input.GetButtonUp("Jump") && System.Math.Abs(myRigidbody.velocity.y)<1 && canJump)
         {
             myRigidbody.AddForce(transform.up * dogJumpForce);
         }
         for (int i = 0; i < Input.touchCount; ++i)
         {
-            if (Input.GetTouch(i).phase == TouchPhase.Began)
+            if (Input.GetTouch(i).phase == TouchPhase.Began && System.Math.Abs(myRigidbody.velocity.y) < 1 && canJump)
             {
                 myRigidbody.AddForce(transform.up * dogJumpForce);
             }
@@ -67,5 +68,10 @@ public class DogController : MonoBehaviour {
                 boneScript.dogAteMe();
             }
         }
+    }
+
+    public void setCanJump(bool a)
+    {
+        canJump = a;
     }
 }
