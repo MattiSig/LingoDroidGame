@@ -13,6 +13,8 @@ public class BoneController : MonoBehaviour {
     private string islWord;
     private string engWord;
     private double timer = 0;
+    public AudioClip SoundToPlay;
+    new AudioSource audio;
 
 
     // Use this for initialization
@@ -21,11 +23,12 @@ public class BoneController : MonoBehaviour {
         textObject = GetComponentsInChildren<TextMesh>();
         int rndm = Random.Range(1, 8);
         textObject[0].text = engWord;
+        audio = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
     void Update () {
-
 	    transform.position += Vector3.left * randomSpeed * Time.deltaTime;
         gameObject.transform.Translate(MovingDirection * randomSpeed * Time.smoothDeltaTime);
 
@@ -53,9 +56,11 @@ public class BoneController : MonoBehaviour {
     }
     public void dogAteMe()
     {
+        audio.PlayOneShot(SoundToPlay, 10);
         textObject[0].text = engWord + " = " + islWord;
         randomSpeed = 1F;
         timer = Time.time;
+
     }
 
 }

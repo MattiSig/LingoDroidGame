@@ -12,6 +12,8 @@ public class EnemyManager : MonoBehaviour
     private CanvasGroup buttonAlpha;
     private Text[] buttonTexts;
     private Component[] buttonScripts;
+    public AudioClip SoundToPlay;
+    new AudioSource audio;
 
     void Start()
     {
@@ -20,6 +22,8 @@ public class EnemyManager : MonoBehaviour
         textObject = GetComponentsInChildren<TextMesh>();
         int rndm = Random.Range(1, 8);
         textObject[0].text = word;
+        audio = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -32,6 +36,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (other.name == "rundog1")
         {
+            audio.PlayOneShot(SoundToPlay, 10);
             buttonAlpha.alpha = 1;
             buttonAlpha.interactable = true;
             Time.timeScale = 0.5F;
@@ -62,11 +67,13 @@ public class EnemyManager : MonoBehaviour
         for (int j = 0; j < buttonTexts.Length; j++)
         {
             buttonTexts[j].text = words[j, 0];
+
             if (words[j, 2] == "t")
             {
                 word = words[j, 1];
                 var buttonScript = buttonGroup.transform.GetChild(j).GetComponent<ButtonClick>();
                 buttonScript.setRightOne();
+
                 buttonScript.shroom = transform.GetChild(0);
             }
         }

@@ -10,13 +10,21 @@ public class DogController : MonoBehaviour {
     private Animator myAnim;
     public Text score;
     private double startTime;
+
+    public AudioClip SoundToPlay;
+    new AudioSource audio;
+
+
+
+   
     private bool canJump = true;
 	// Use this for initialization
 	void Start () {
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
         startTime = Time.time;
-	}
+        audio = GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -39,13 +47,17 @@ public class DogController : MonoBehaviour {
     {
         if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+      //      audio.PlayOneShot(SoundToPlay, 1);
             Application.LoadLevel(Application.loadedLevel);
         }
 
 
     }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         if (other.name == "BoneText(Clone)")
         {
             GameObject boneText = other.gameObject;
