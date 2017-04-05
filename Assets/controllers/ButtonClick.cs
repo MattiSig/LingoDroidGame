@@ -22,9 +22,9 @@ public class ButtonClick : MonoBehaviour {
     {
         if (theRightOne)
         {
-            Debug.Log("RÉTT!");
+            Destroy(shroom.gameObject);
         } else {
-            Debug.Log("RANGT!");
+           Application.LoadLevel(Application.loadedLevel);
         }
     }
 }
