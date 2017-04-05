@@ -10,8 +10,8 @@ public class BoneController : MonoBehaviour {
     public float maxSpeed = 13;
     float randomSpeed;
     private TextMesh[] textObject;
-    private string[] stringArray = { "Matti", "Finnur", "Arnór", "Doddi", "ekkiOrð", "lærðuKrakki", "kuldinn", "myrkrið" };
-
+    //private string[] stringArray = { "Matti", "Finnur", "Arnór", "Doddi", "ekkiOrð", "lærðuKrakki", "kuldinn", "myrkrið" };
+    private string word;
 
 
     // Use this for initialization
@@ -19,7 +19,7 @@ public class BoneController : MonoBehaviour {
         randomSpeed = Random.Range(minSpeed, maxSpeed);
         textObject = GetComponentsInChildren<TextMesh>();
         int rndm = Random.Range(1, 8);
-        textObject[0].text = stringArray[rndm];
+        textObject[0].text = word;
 
     }
 
@@ -41,5 +41,8 @@ public class BoneController : MonoBehaviour {
         }
 
     }
-
+    public void setWord(string a)
+    {
+        word = a;
+    }
 }

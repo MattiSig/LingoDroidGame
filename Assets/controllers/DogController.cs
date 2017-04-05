@@ -36,11 +36,18 @@ public class DogController : MonoBehaviour {
             Application.LoadLevel(Application.loadedLevel);
         }
 
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Bone"))
-        {
-            Destroy(collision.gameObject);
-        }
 
     }
-
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.name == "BoneText(Clone)")
+        {
+            Debug.Log("virkar");
+            GameObject boneText = other.gameObject;
+            if(boneText.transform.GetChild(0).name == "bone")
+            {
+                Destroy(boneText.transform.GetChild(0).gameObject);
+            }
+        }
+    }
 }
