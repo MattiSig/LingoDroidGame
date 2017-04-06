@@ -56,7 +56,7 @@ public class BoneController : MonoBehaviour {
     }
     public void dogAteMe()
     {
-        audio.PlayOneShot(SoundToPlay, 10);
+        audio.PlayOneShot(SoundToPlay, 0.5F);
         textObject[0].text = engWord + " = " + islWord;
         randomSpeed = 1F;
         timer = Time.time;

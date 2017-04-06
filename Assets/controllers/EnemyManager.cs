@@ -36,7 +36,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (other.name == "rundog1")
         {
-            audio.PlayOneShot(SoundToPlay, 10);
+            audio.PlayOneShot(SoundToPlay, 0.5F);
             buttonAlpha.alpha = 1;
             buttonAlpha.interactable = true;
             Time.timeScale = 0.5F;
